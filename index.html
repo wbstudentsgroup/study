@@ -1,147 +1,137 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WB STG Learning — Platform</title>
-  <link rel="icon" href="https://i.ibb.co/mVz4Mbnh/wb-logo.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#071226; --card:#0b1220; --muted:#9aa4b2; --accent1:#7c3aed; --accent2:#4f46e5;
-      --glass: rgba(255,255,255,0.03); --success:#16a34a; --danger:#ef4444; --radius:12px;
-    }
-    *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
-    html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#071226 0%, #041523 60%);color:#e6eef8;min-height:100vh;display:flex;flex-direction:column}
-    .container{max-width:1100px;margin:18px auto;padding:16px}
-    header{display:flex;align-items:center;gap:14px}
-    header img{width:56px;height:56px;border-radius:12px;object-fit:cover;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    header h1{margin:0;font-size:20px}
-    .muted{color:var(--muted);font-size:13px}
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:12px}
-    .search{flex:1}
-    .search input{width:100%;padding:10px 14px;border-radius:10px;border:none;background:var(--glass);color:inherit;outline:none;transition:box-shadow .15s}
-    .btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 14px;border-radius:10px;border:none;color:white;font-weight:600;cursor:pointer;transition:transform .12s,box-shadow .12s}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(79,70,229,0.12)}
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06)}
-    .main{display:grid;grid-template-columns:260px 1fr;gap:16px;margin-top:18px}
-    nav.sidebar{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));padding:12px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03)}
-    nav.sidebar ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-    nav.sidebar li{padding:10px;border-radius:8px;cursor:pointer;color:var(--muted);display:flex;align-items:center;gap:8px;transition:background .12s}
-    nav.sidebar li.active{background:linear-gradient(90deg, rgba(124,58,237,0.12), rgba(79,70,229,0.08));color:#fff}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
-    .courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-    .course-card{padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));border:1px solid rgba(255,255,255,0.03);transition:transform .18s,box-shadow .18s}
-    .course-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
-    .course-card h3{margin:0 0 6px 0;font-size:16px}
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px}
-    .badge.free{background:rgba(34,197,94,0.12);color:var(--success)}
-    .badge.premium{background:rgba(255,165,0,0.1);color:#ffb020}
-    .profile{display:flex;gap:10px;align-items:center}
-    .avatar{width:36px;height:36px;border-radius:10px;background:linear-gradient(90deg,#7c3aed,#4f46e5);display:flex;align-items:center;justify-content:center;font-weight:700}
-    .hidden{display:none !important;visibility:hidden !important}
-    .input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    textarea{resize:vertical}
-    .actions{display:flex;gap:8px;justify-content:flex-end}
-    .notice{background:linear-gradient(90deg, rgba(124,58,237,0.06), rgba(79,70,229,0.03));padding:10px;border-radius:8px;margin-bottom:10px}
-    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.75);z-index:9999}
-    .modal .card{width:min(900px,96vw)}
-    .muted-block{color:var(--muted);font-size:13px;margin-top:8px}
-    .helper{font-size:13px;color:var(--muted);margin-top:6px}
-    @media (max-width:768px){
-      .container{padding:12px;margin:0}
-      header{flex-direction:column;align-items:flex-start;gap:8px}
-      .topbar{flex-direction:column;gap:10px;align-items:stretch}
-      .search{margin:0;width:100%}
-      .main{grid-template-columns:1fr}
-      nav.sidebar{display:flex;overflow-x:auto;gap:8px;padding:8px;border-radius:10px}
-      nav.sidebar ul{display:flex;gap:8px}
-      nav.sidebar li{white-space:nowrap;padding:8px 12px;border-radius:999px}
-      .courses{grid-template-columns:1fr}
-      .course-card{padding:12px}
-      .btn{width:100%}
-      .modal .card{width:calc(100vw - 28px)}
-      video{max-height:220px}
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>WB STG Learning — Final</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#071226; --panel:#0b1220; --panel2:#0f1e35; --muted:#9aa4b2;
+    --accent1:#7c3aed; --accent2:#4f46e5; --primary:#7c3aed; --radius:12px; --text:#e6eef8;
+    --success:#22c55e; --danger:#ef4444;
+  }
+  *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#071226 0%, #041523 80%);color:var(--text);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .container{max-width:1100px;margin:12px auto;padding:12px}
+
+  /* topbar */
+  .topbar{display:flex;align-items:center;gap:12px;padding:12px 0}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{width:44px;height:44px;border-radius:10px;object-fit:cover;box-shadow:0 8px 28px rgba(2,6,23,0.5)}
+  .brand h1{margin:0;font-size:18px}
+  .spacer{flex:1}
+  .search input{width:420px;max-width:60vw;padding:10px 12px;border-radius:10px;border:none;background:rgba(255,255,255,0.03);color:inherit}
+
+  /* layout */
+  .wrapper{display:grid;grid-template-columns:260px 1fr;gap:16px;margin-top:12px}
+  .sidebar{background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.02));padding:14px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03)}
+  .sidebar ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+  .sidebar li{padding:10px;border-radius:8px;color:var(--muted);cursor:pointer;transition:background .12s}
+  .sidebar li.active{background:linear-gradient(90deg, rgba(124,58,237,0.12), rgba(79,70,229,0.08));color:#fff}
+
+  /* grid + cards */
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(2,6,23,0.5)}
+  .courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .course-card{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));border:1px solid rgba(255,255,255,0.03);transition:transform .18s,box-shadow .18s}
+  .course-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+  .course-card h3{margin:0 0 8px}
+  .small{font-size:13px;color:var(--muted)}
+  .badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px}
+  .badge.free{background:rgba(34,197,94,0.12);color:var(--success)}
+  .badge.premium{background:rgba(255,165,0,0.1);color:#ffb020}
+  .btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 14px;border-radius:10px;border:none;color:white;cursor:pointer;font-weight:600}
+  .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
+  .btn.small{padding:8px 10px;font-size:14px;border-radius:8px}
+  .page{display:none}
+  .page.active{display:block}
+
+  /* course view */
+  .course-view .header{display:flex;align-items:center;gap:12px}
+  .back-btn{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:10px;color:var(--muted);cursor:pointer}
+  .materials{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+  .subject{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:rgba(255,255,255,0.02)}
+  .subject .title{font-weight:600}
+  .subject button{background:linear-gradient(90deg,var(--accent1),var(--accent2));border:none;color:white;padding:8px 12px;border-radius:10px;cursor:pointer}
+
+  /* admin */
+  .admin-controls{display:flex;gap:8px;margin-top:10px}
+  .adminMaterial{background:rgba(255,255,255,0.02);padding:8px;border-radius:8px}
+  .admin-row{padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.02)}
+
+  /* modal */
+  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.7);z-index:9999}
+  .modal .box{width:min(940px,96vw);background:linear-gradient(180deg,#0b1220,#071026);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 20px 60px rgba(2,6,23,0.7);max-height:94vh;overflow:auto}
+  .input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+  .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:rgba(0,0,0,0.75);color:white;padding:8px 12px;border-radius:8px;z-index:10000}
+
+  /* animations */
+  .animate-in{animation:fadeIn .28s ease both}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* mobile */
+  @media(max-width:880px){
+    .wrapper{grid-template-columns:1fr}
+    .search input{width:100%}
+    .sidebar{display:flex;overflow:auto;gap:8px;padding:10px}
+    .sidebar ul{display:flex;gap:8px}
+    .sidebar li{white-space:nowrap;padding:8px 12px;border-radius:999px}
+    .courses{grid-template-columns:1fr}
+    .modal .box{width:94vw;padding:14px;border-radius:12px}
+    .subject{flex-direction:column;align-items:flex-start;gap:8px}
+    .subject button{width:100%}
+    .course-card{padding:12px;border-radius:12px}
+    .brand img{width:36px;height:36px}
+  }
+</style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <img src="https://i.ibb.co/mVz4Mbnh/wb-logo.jpg" alt="WB STG logo">
-      <div>
-        <h1>WB STG Learning</h1>
-        <div class="muted small">Premium & Free classes • Tests • Notes • Notices</div>
-      </div>
-      <div style="flex:1"></div>
-      <div id="userArea" class="profile">
-        <div id="authButtons">
-          <button class="btn" id="openAuth">Login / Signup</button>
-        </div>
-        <div id="userMenu" class="hidden profile">
-          <div class="avatar" id="avatarTxt">U</div>
-          <div id="userInfo">
-            <div id="userName">User</div>
-            <div class="muted small" id="userEmail">email@example.com</div>
-          </div>
-          <button class="btn secondary" id="logoutBtn">Logout</button>
-        </div>
-      </div>
-    </header>
-
     <div class="topbar">
-      <div class="search"><input type="text" id="globalSearch" placeholder="Search courses, topics..." /></div>
-      <div class="flex">
-        <button class="btn" id="myCoursesBtn">My Courses</button>
+      <div class="brand">
+        <img src="https://i.ibb.co/mVz4Mbnh/wb-logo.jpg" alt="WB logo">
+        <div>
+          <h1>WB STG Learning</h1>
+          <div class="small"></div>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="search"><input id="searchInput" placeholder="Search courses, topics..." /></div>
+      <div style="width:12px"></div>
+
+      <div class="user" id="userArea">
+        <button id="openLogin" class="btn">Login / Signup</button>
       </div>
     </div>
 
-    <div class="main">
-      <nav class="sidebar card">
+    <div class="wrapper" style="margin-top:12px">
+      <nav class="sidebar card" aria-label="Primary navigation">
         <ul>
-          <li data-view="home" class="active">Home</li>
-          <li data-view="courses">Courses</li>
-          <li data-view="tests">Tests</li>
-          <li data-view="notices">Notices</li>
-          <li data-view="dashboard">Dashboard</li>
-          <li data-view="admin" id="adminNav" class="hidden">Admin</li>
+          <li data-page="home" class="active">Home</li>
+          <li data-page="courses">Courses</li>
+          <li data-page="tests">Tests</li>
+          <li data-page="notices">Notices</li>
+          <li data-page="dashboard">Dashboard</li>
+          <li data-page="admin" id="adminNav" style="display:none">Admin</li>
         </ul>
       </nav>
 
-      <main id="views">
-        <!-- AUTH -->
-        <section id="authView" class="card hidden">
-          <h2>Login or Create Account</h2>
-          <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
-            <input id="authEmail" class="input" placeholder="Email" />
-            <input id="authPassword" type="password" class="input" placeholder="Password (min 6)" />
-          </div>
-          <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
-            <button class="btn secondary" id="btnLogin">Login</button>
-            <button class="btn" id="btnSignup">Sign up</button>
-          </div>
-          <div class="muted small" style="margin-top:8px">Tip: Use <strong>yusufkhanyk7310@gmail.com</strong> to become Admin automatically.</div>
-        </section>
-
+      <main class="main">
         <!-- HOME -->
-        <section id="home" class="card">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <h2>Featured courses</h2>
-              <div class="muted">Choose a course to start learning</div>
-            </div>
-            <div id="topNoticeContainer"></div>
-          </div>
+        <section id="home" class="page card active">
+          <h2>Featured</h2>
           <div id="featured" class="courses" style="margin-top:12px"></div>
         </section>
 
         <!-- COURSES -->
-        <section id="courses" class="card hidden">
+        <section id="courses" class="page card">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <h2>All Courses</h2>
             <div>
-              <select id="filterType" class="input small" style="width:160px">
+              <select id="filterType" class="input" style="padding:8px;border-radius:8px">
                 <option value="all">All</option><option value="free">Free</option><option value="premium">Premium</option>
               </select>
             </div>
@@ -150,563 +140,529 @@
         </section>
 
         <!-- TESTS -->
-        <section id="tests" class="card hidden">
+        <section id="tests" class="page card">
           <h2>Tests & Quizzes</h2>
-          <div id="testList" style="margin-top:12px" class="courses"></div>
+          <div id="testList" style="margin-top:12px"></div>
         </section>
 
         <!-- NOTICES -->
-        <section id="notices" class="card hidden">
+        <section id="notices" class="page card">
           <h2>Notices</h2>
           <div id="noticeList" style="margin-top:12px"></div>
         </section>
 
         <!-- DASHBOARD -->
-        <section id="dashboard" class="card hidden">
+        <section id="dashboard" class="page card">
           <h2>Your Dashboard</h2>
           <div id="dashboardContent" style="margin-top:12px"></div>
         </section>
 
+        <!-- COURSE VIEW -->
+        <section id="courseView" class="page card">
+          <div class="course-view">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="display:flex;gap:8px;align-items:center">
+                <button class="back-btn" id="backBtn">⬅ Back</button>
+                <h3 id="courseTitle">Course</h3>
+              </div>
+              <div id="courseType" class="small"></div>
+            </div>
+            <div id="materials" class="materials"></div>
+          </div>
+        </section>
+
         <!-- ADMIN -->
-        <section id="admin" class="card admin-only hidden">
+        <section id="admin" class="page card" style="display:none">
           <h2>Admin Panel</h2>
-          <div class="muted small">Manage courses, add links for notes & videos, create tests & notices</div>
-
-          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
             <div class="card">
-              <h3>Create Course (multiple notes)</h3>
-              <input id="adminCourseTitle" class="input" placeholder="Course title" />
-              <textarea id="adminCourseDesc" class="input" placeholder="Short description" style="min-height:80px;margin-top:8px"></textarea>
-              <select id="adminCourseType" class="input" style="margin-top:8px"><option value="free">Free</option><option value="premium">Premium</option></select>
+              <h3>Create / Edit Course</h3>
+              <input id="adminTitle" class="input" placeholder="Course title" />
+              <textarea id="adminDesc" class="input" placeholder="Short description" style="min-height:80px;margin-top:8px"></textarea>
+              <select id="adminType" class="input" style="margin-top:8px"><option value="free">Free</option><option value="premium">Premium</option></select>
 
-              <div id="notesContainer" style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-                <!-- dynamic note rows -->
-              </div>
+              <div style="margin-top:8px"><strong>Materials (links)</strong></div>
+              <div id="materialsEditor" style="display:flex;flex-direction:column;gap:8px;margin-top:8px;max-height:180px;overflow:auto"></div>
+
               <div style="display:flex;gap:8px;margin-top:8px">
-                <button class="btn secondary" id="addNoteRow">+ Add note</button>
-              </div>
-
-              <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
-                <label class="helper"><input type="checkbox" id="adminPublish" /> Publish course (visible to students)</label>
+                <input id="matTitle" class="input" placeholder="Material title" />
+                <input id="matLink" class="input" placeholder="Material link (https://...)" />
+                <button id="addMatBtn" class="btn" style="padding:8px 10px">Add</button>
               </div>
 
               <div style="display:flex;justify-content:flex-end;margin-top:8px">
-                <button class="btn admin-only" id="createCourseBtn">Create Course</button>
+                <button id="saveCourseBtn" class="btn">Create Course</button>
               </div>
             </div>
 
             <div class="card">
-              <h3>Create Test</h3>
-              <input id="adminTestTitle" class="input" placeholder="Test title" />
-              <textarea id="adminTestJSON" class="input" placeholder='Questions JSON: [{"q":"...","options":["a","b","c","d"],"answer":0}]' style="min-height:160px;margin-top:8px"></textarea>
-              <div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn admin-only" id="createTestBtn">Create Test</button></div>
+              <h3>Admin Lists</h3>
+              <div id="adminCourses" style="margin-top:8px"></div>
             </div>
           </div>
-
-          <div style="margin-top:12px">
-            <h3>Create Notice</h3>
-            <textarea id="adminNoticeText" class="input" placeholder="Notice text" style="min-height:60px"></textarea>
-            <div style="display:flex;justify-content:flex-end;margin-top:8px"><button class="btn admin-only" id="createNoticeBtn">Post Notice</button></div>
-          </div>
-
-          <div style="margin-top:12px" id="adminLists"></div>
         </section>
-
       </main>
     </div>
 
-    <footer class="muted-block">Made for WB STG Learning — demo. Keep <strong>firebase.js</strong> in same folder exporting <code>auth</code> & <code>db</code>.</footer>
+    <div style="height:18px"></div>
+    <footer style="text-align:center;color:var(--muted)">© 2026 WB STG Learning • All rights reserved</footer>
   </div>
 
-  <script type="module">
-    // ========== CONFIG ==========
-    const ADMIN_EMAIL = "yusufkhanyk7310@gmail.com";
-    const WHATSAPP_NUMBER = "919330395465";
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="loginModal">
+    <div class="box card" style="width:360px;padding:18px">
+      <h3 style="margin:0 0 8px 0">Login / Signup</h3>
+      <input id="loginEmail" class="input" placeholder="Email" />
+      <input id="loginPassword" type="password" class="input" placeholder="Password (min 6)" />
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button id="loginCancel" class="btn secondary">Cancel</button>
+        <button id="loginSubmit" class="btn">Login / Signup</button>
+      </div>
+      <div class="small" style="margin-top:10px"> <strong></strong> </div>
+    </div>
+  </div>
 
-    // ========== IMPORTS ==========
-    import { auth, db } from './firebase.js';
-    import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
-    import {
-      doc, setDoc, getDoc, updateDoc, collection, addDoc, getDocs, query, where, orderBy, serverTimestamp
-    } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+  <!-- placeholder for dynamic modals -->
+  <div id="dynamicModalContainer"></div>
 
-    // ========== HELPERS ==========
-    const $ = id => document.getElementById(id);
-    function escapeHtml(s){ if(!s && s !== 0) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
-    function showToast(msg){ alert(msg); }
+  <div id="toast" style="display:none" class="toast"></div>
 
-    // hide admin UI immediately to avoid flash
-    (function hideAdminNow(){
-      $('adminNav')?.classList.add('hidden');
-      $('admin')?.classList.add('hidden');
-      document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden'));
-    })();
+<script type="module">
+/* ---------------- FIREBASE IMPORTS ---------------- */
+import { auth, db } from './firebase.js';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where, serverTimestamp, getDoc } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
 
-    // ========== STATE ==========
-    let currentUser = null;
-    let userRole = null;
-    let coursesCache = [];
-    let testsCache = [];
-    let noticesCache = [];
+/* ---------------- CONFIG ---------------- */
+const ADMIN_EMAIL = 'yusufkhanyk7310@gmail.com'; // admin
+const WHATSAPP_NUMBER = '919330395465';
 
-    // ========== NAV ==========
-    document.querySelectorAll('nav.sidebar li').forEach(li=> li.addEventListener('click', ()=> {
-      showView(li.dataset.view);
-      if(li.dataset.view==='courses' || li.dataset.view==='home') loadCourses();
-      if(li.dataset.view==='tests') loadTests();
-      if(li.dataset.view==='notices') loadNotices();
-      if(li.dataset.view==='dashboard') renderDashboard();
-      if(li.dataset.view==='admin') loadAdminLists();
-    }));
+/* ---------------- UI REFS ---------------- */
+const pages = document.querySelectorAll('.page');
+const sidebarItems = document.querySelectorAll('.sidebar li');
+const loginModal = document.getElementById('loginModal');
+const loginEmail = document.getElementById('loginEmail');
+const loginPassword = document.getElementById('loginPassword');
+const loginSubmit = document.getElementById('loginSubmit');
+const loginCancel = document.getElementById('loginCancel');
+const openLogin = document.getElementById('openLogin');
+const toastEl = document.getElementById('toast');
 
-    $('openAuth').addEventListener('click', ()=> { $('authView').classList.toggle('hidden'); $('authEmail').focus(); });
-    $('btnSignup').addEventListener('click', signup);
-    $('btnLogin').addEventListener('click', login);
-    $('logoutBtn').addEventListener('click', async ()=> { await signOut(auth); });
+const featuredEl = document.getElementById('featured');
+const courseListEl = document.getElementById('courseList');
+const materialsEl = document.getElementById('materials');
+const courseTitleEl = document.getElementById('courseTitle');
+const courseTypeEl = document.getElementById('courseType');
+const backBtn = document.getElementById('backBtn');
 
-    $('globalSearch').addEventListener('input', (e)=> {
-      const q = e.target.value.trim().toLowerCase();
-      if(!q){ renderCourses(coursesCache); return; }
-      renderCourses(coursesCache.filter(c=> (c.title||'').toLowerCase().includes(q) || (c.desc||'').toLowerCase().includes(q)));
-    });
+const adminNav = document.getElementById('adminNav');
+const adminPage = document.getElementById('admin');
 
-    $('filterType')?.addEventListener('change', (e)=> {
-      const v = e.target.value; if(v==='all') renderCourses(coursesCache); else renderCourses(coursesCache.filter(c=>c.type===v));
-    });
+const adminTitle = document.getElementById('adminTitle');
+const adminDesc = document.getElementById('adminDesc');
+const adminType = document.getElementById('adminType');
+const matTitle = document.getElementById('matTitle');
+const matLink = document.getElementById('matLink');
+const addMatBtn = document.getElementById('addMatBtn');
+const materialsEditor = document.getElementById('materialsEditor');
+const saveCourseBtn = document.getElementById('saveCourseBtn');
+const adminCourses = document.getElementById('adminCourses');
 
-    $('myCoursesBtn').addEventListener('click', ()=> { showView('dashboard'); loadMyEnrollments(); });
+const filterType = document.getElementById('filterType');
+const searchInput = document.getElementById('searchInput');
 
-    // ========== AUTH ==========
-    async function signup(){
-      const email = $('authEmail').value.trim();
-      const password = $('authPassword').value.trim();
-      if(!email || password.length < 6) return showToast('Enter valid email and min 6 char password');
-      try {
-        const res = await createUserWithEmailAndPassword(auth, email, password);
-        await setDoc(doc(db,'users',res.user.uid), {
-          email,
-          role: email === ADMIN_EMAIL ? 'admin' : 'student',
-          paid: false,
-          createdAt: serverTimestamp()
-        });
-        showToast('Account created — welcome!');
-      } catch(err){
-        showToast(err.message || 'Signup failed');
-      }
+const dynamicModalContainer = document.getElementById('dynamicModalContainer');
+
+/* ---------------- STATE ---------------- */
+let currentUser = null;
+let userRole = null;
+let coursesCache = [];
+let currentOpenCourse = null;
+let adminMaterials = [];
+
+/* ---------------- HELPERS ---------------- */
+function $(id){ return document.getElementById(id); }
+function showToast(msg, t=2400){ toastEl.textContent = msg; toastEl.style.display = 'block'; setTimeout(()=> toastEl.style.display = 'none', t); }
+function escapeHtml(s){ if(s==null) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
+function showPage(pageId){
+  pages.forEach(p => p.classList.remove('active'));
+  const p = document.getElementById(pageId);
+  if(p){ p.classList.add('active'); p.classList.add('animate-in'); setTimeout(()=> p.classList.remove('animate-in'), 350); }
+  sidebarItems.forEach(li => li.classList.toggle('active', li.dataset.page === pageId));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showModal(html){ const c = document.createElement('div'); c.className='modal'; c.style.display='flex'; const box = document.createElement('div'); box.className='box card'; box.innerHTML = html; c.appendChild(box); dynamicModalContainer.appendChild(c); return { container: c, box }; }
+
+/* ---------------- NAVIGATION ---------------- */
+sidebarItems.forEach(li => {
+  li.addEventListener('click', ()=> {
+    const page = li.dataset.page;
+    if(!page) return;
+    showPage(page);
+    if(page === 'courses' || page === 'home') loadCourses();
+    if(page === 'tests') loadTests();
+    if(page === 'notices') loadNotices();
+    if(page === 'dashboard') renderDashboard();
+    if(page === 'admin') loadAdminLists();
+  });
+});
+
+/* ---------------- LOGIN FLOW ---------------- */
+openLogin.addEventListener('click', ()=> { loginModal.style.display = 'flex'; loginEmail.focus(); });
+loginCancel.addEventListener('click', ()=> { loginModal.style.display = 'none'; });
+
+loginSubmit.addEventListener('click', async ()=> {
+  const email = loginEmail.value.trim(); const pass = loginPassword.value;
+  if(!email || pass.length < 6){ showToast('Enter email and min 6 char password'); return; }
+  try{
+    await signInWithEmailAndPassword(auth, email, pass);
+    loginModal.style.display = 'none';
+    loginEmail.value = loginPassword.value = '';
+    showToast('Logged in');
+  } catch(err){
+    try{
+      const res = await createUserWithEmailAndPassword(auth, email, pass);
+      // register user
+      await addDoc(collection(db,'users'), { uid: res.user.uid, email, role: email === ADMIN_EMAIL ? 'admin' : 'student', createdAt: serverTimestamp() });
+      loginModal.style.display = 'none';
+      loginEmail.value = loginPassword.value = '';
+      showToast('Account created & logged in');
+    } catch(e){
+      console.error('auth error', e);
+      showToast('Auth failed');
     }
+  }
+});
 
-    async function login(){
-      const email = $('authEmail').value.trim();
-      const password = $('authPassword').value.trim();
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        $('authView').classList.add('hidden');
-      } catch(err){ showToast(err.message || 'Login failed'); }
-    }
+/* logout handler (top bar) */
+document.addEventListener('click', (ev) => {
+  if(ev.target && ev.target.classList && ev.target.classList.contains('logout')){
+    signOut(auth).then(()=> showToast('Logged out'));
+  }
+});
 
-    async function fetchAndCacheUserRole(uid){
-      // hide admin by default
-      userRole = 'student';
-      $('adminNav')?.classList.add('hidden');
-      $('admin')?.classList.add('hidden');
-      document.querySelectorAll('.admin-only').forEach(el=> el.classList.add('hidden'));
-
-      try{
-        const snap = await getDoc(doc(db,'users',uid));
-        const data = snap.exists() ? snap.data() : {};
-        userRole = data.role || 'student';
-        if(userRole === 'admin'){
-          $('adminNav')?.classList.remove('hidden');
-          $('admin')?.classList.remove('hidden');
-          document.querySelectorAll('.admin-only').forEach(el=> el.classList.remove('hidden'));
-        }
-      }catch(e){ console.warn('Could not read user role', e); }
-      return userRole;
-    }
-
-    function showView(id){
-      document.querySelectorAll('main section').forEach(s => {
-        if(s.id === 'admin'){
-          (userRole === 'admin' && id === 'admin') ? s.classList.remove('hidden') : s.classList.add('hidden');
-        } else {
-          s.id === id ? s.classList.remove('hidden') : s.classList.add('hidden');
-        }
-      });
-      document.querySelectorAll('nav.sidebar li').forEach(li => {
-        if(li.id === 'adminNav'){
-          if(userRole === 'admin') li.classList.remove('hidden'); else li.classList.add('hidden');
-          if(userRole === 'admin' && id === 'admin') li.classList.add('active'); else li.classList.remove('active');
-        } else {
-          li.dataset.view === id ? li.classList.add('active') : li.classList.remove('active');
-        }
-      });
-    }
-
-    function isAdmin(){ return userRole === 'admin'; }
-    async function ensureAdminOrAbort(){ if(!currentUser) { showToast('Login required'); throw new Error('Not logged in'); } if(userRole === null) await fetchAndCacheUserRole(currentUser.uid); if(!isAdmin()){ showToast('Only admin can perform this action'); throw new Error('Not admin'); } return true; }
-
-    onAuthStateChanged(auth, async (user) => {
-      if(user){
-        currentUser = user;
-        await fetchAndCacheUserRole(user.uid);
-        $('userMenu').classList.remove('hidden');
-        $('authButtons').classList.add('hidden');
-        $('avatarTxt').textContent = (user.email||'U').charAt(0).toUpperCase();
-        $('userName').textContent = user.email.split('@')[0];
-        $('userEmail').textContent = user.email;
-        showView('dashboard');
-        renderDashboard();
+/* ---------------- AUTH STATE ---------------- */
+onAuthStateChanged(auth, async (user) => {
+  currentUser = user;
+  if(user){
+    // determine role from users collection
+    userRole = 'student';
+    try{
+      const q = query(collection(db,'users'), where('email','==',user.email));
+      const snap = await getDocs(q);
+      if(!snap.empty){
+        const d = snap.docs[0].data(); userRole = d.role || (user.email === ADMIN_EMAIL ? 'admin' : 'student');
       } else {
-        currentUser = null; userRole = null;
-        $('userMenu').classList.add('hidden'); $('authButtons').classList.remove('hidden');
-        $('avatarTxt').textContent = 'U'; $('userName').textContent='User'; $('userEmail').textContent='';
-        showView('home');
-        renderDashboard();
+        userRole = user.email === ADMIN_EMAIL ? 'admin' : 'student';
       }
-    });
+    }catch(e){
+      userRole = user.email === ADMIN_EMAIL ? 'admin' : 'student';
+    }
+    // show only initial letter as avatar and no email/uid
+    const userArea = document.getElementById('userArea');
+    userArea.innerHTML = `<div style="display:flex;gap:10px;align-items:center">
+      <div style="background:linear-gradient(90deg,var(--accent1),var(--accent2));width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700">${(user.email||'U').charAt(0).toUpperCase()}</div>
+      <button class="btn secondary logout">Logout</button>
+    </div>`;
+    if(userRole === 'admin'){ adminNav.style.display = 'block'; adminPage.style.display = 'block'; } else { adminNav.style.display = 'none'; adminPage.style.display = 'none'; }
+  } else {
+    userRole = null;
+    document.getElementById('userArea').innerHTML = '<button id="openLogin" class="btn">Login / Signup</button>';
+    document.getElementById('openLogin').addEventListener('click', ()=> loginModal.style.display = 'flex');
+    adminNav.style.display = 'none'; adminPage.style.display = 'none';
+  }
+  // refresh lists
+  await loadCourses(); loadTests(); loadNotices();
+});
 
-    // ========== COURSES ==========
-    // render dynamic notes rows for admin create
-    function createNoteRow(name = '', link = ''){
-      const row = document.createElement('div');
-      row.style.display = 'flex';
-      row.style.gap = '8px';
-      row.style.alignItems = 'center';
-      row.innerHTML = `
-        <input class="input note-name" placeholder="Note name (e.g. Chapter 1)" value="${escapeHtml(name)}" />
-        <input class="input note-link" placeholder="Paste link (Drive / direct URL)" value="${escapeHtml(link)}" />
-        <button class="btn secondary btn-remove-note">Remove</button>
+/* ---------------- COURSES ---------------- */
+async function loadCourses(){
+  try{
+    featuredEl.innerHTML = ''; courseListEl.innerHTML = '';
+    const snap = await getDocs(collection(db,'courses'));
+    coursesCache = [];
+    snap.forEach(d => { const data = d.data(); data.id = d.id; coursesCache.push(data); });
+
+    // featured
+    const featured = coursesCache.slice(0,3);
+    featured.forEach(c => {
+      const el = document.createElement('div'); el.className = 'course-card';
+      el.innerHTML = `
+        <h3>${escapeHtml(c.title)}</h3>
+        <div class="small">${escapeHtml(c.desc || '')}</div>
+        <div style="margin-top:8px"><span class="badge ${c.type==='premium'?'premium':'free'}">${c.type || 'free'}</span></div>
+        <div style="margin-top:10px"><button class="btn" data-id="${c.id}">${isJoined(c.id) ? 'OPEN NOW' : 'JOIN'}</button></div>
       `;
-      row.querySelector('.btn-remove-note').addEventListener('click', ()=> row.remove());
-      return row;
-    }
-    // initial two rows
-    $('notesContainer')?.appendChild(createNoteRow());
-    $('notesContainer')?.appendChild(createNoteRow());
-
-    $('addNoteRow')?.addEventListener('click', ()=> {
-      $('notesContainer').appendChild(createNoteRow());
+      el.querySelector('button').addEventListener('click', ()=> handleCourseClick(c));
+      featuredEl.appendChild(el);
     });
 
-    async function loadCourses(){
-      try{
-        const qSnap = await getDocs(collection(db,'courses'));
-        coursesCache = [];
-        qSnap.forEach(d=> { const data = d.data(); data.id = d.id; coursesCache.push(data); });
-      } catch(e){
-        console.warn('Could not fetch courses — fallback', e);
-        coursesCache = [{id:'c1',title:'Math Basics',desc:'Fundamentals',type:'free',published:true, notes: []}];
-      }
-      const visible = coursesCache.filter(c => c.published === true || userRole === 'admin');
-      renderCourses(visible);
-    }
+    // all courses
+    coursesCache.forEach(c => {
+      const el = document.createElement('div'); el.className = 'course-card';
+      el.innerHTML = `
+        <h3>${escapeHtml(c.title)}</h3>
+        <div class="small">${escapeHtml(c.desc || '')}</div>
+        <div style="margin-top:8px"><span class="badge ${c.type==='premium'?'premium':'free'}">${c.type || 'free'}</span></div>
+        <div style="margin-top:10px"><button class="btn" data-id="${c.id}">${isJoined(c.id) ? 'OPEN NOW' : 'JOIN'}</button></div>
+      `;
+      el.querySelector('button').addEventListener('click', ()=> handleCourseClick(c));
+      courseListEl.appendChild(el);
+    });
+  }catch(e){ console.error('loadCourses', e); showToast('Could not load courses'); }
+}
 
-    function renderCourses(list){
-      $('featured').innerHTML = '';
-      $('courseList').innerHTML = '';
+/* join check via localStorage (quick) */
+function isJoined(courseId){
+  const joined = JSON.parse(localStorage.getItem('joinedCourses') || '[]');
+  return joined.includes(courseId);
+}
+function markJoined(courseId){
+  const j = JSON.parse(localStorage.getItem('joinedCourses') || '[]');
+  if(!j.includes(courseId)){ j.push(courseId); localStorage.setItem('joinedCourses', JSON.stringify(j)); }
+}
 
-      list.forEach(c=>{
-        const locked = c.type === 'premium';
-        const card = document.createElement('div'); card.className = 'course-card';
-        card.innerHTML = `
-          <h3>${escapeHtml(c.title)}</h3>
-          <div class="muted small">${escapeHtml(c.desc||'')}</div>
-          <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-            <div class="badge ${locked ? 'premium' : 'free'}">${locked ? '🔒 Premium' : 'Free'}</div>
-            <div style="display:flex;gap:8px;align-items:center">
-              <button class="btn small" data-id="${c.id}">${locked ? 'Unlock' : 'Open'}</button>
-            </div>
-          </div>
-        `;
-        const btn = card.querySelector('button');
-        btn.addEventListener('click', async () => {
-          // require login to open/join
-          if(!currentUser){
-            if(confirm('You must login to open/join the course. Open login panel now?')) { $('authView').classList.remove('hidden'); $('authEmail').focus(); }
-            return;
-          }
-          // check if enrolled
-          const enrolled = await checkEnrollment(currentUser.uid, c.id);
-          if(locked){
-            // if admin or already purchased/enrolled -> open
-            if(isAdmin() || enrolled){
-              openCourse(c); return;
-            }
-            // otherwise redirect to WhatsApp to purchase
-            const msg = encodeURIComponent(`I want to purchase the course: ${c.title}`);
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
-            return;
-          } else {
-            // free course -> if not enrolled -> join, else open
-            if(!enrolled){
-              await joinCourse(c.id);
-              showToast('Joined course — opening now');
-            }
-            openCourse(c);
-          }
-        });
+/* when user clicks join/open */
+async function handleCourseClick(course){
+  if(!currentUser){ loginModal.style.display = 'flex'; return; }
+  if(course.type === 'premium' && userRole !== 'admin' && !isJoined(course.id)){
+    const msg = encodeURIComponent(`I want to purchase the course: ${course.title}`);
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); return;
+  }
+  if(!isJoined(course.id)){
+    try{ await addDoc(collection(db,'enrollments'), { userId: currentUser.uid, courseId: course.id, createdAt: serverTimestamp() }); } catch(e){ console.warn('enroll save failed', e); }
+    markJoined(course.id); showToast('Joined course');
+  }
+  openCourseView(course);
+}
 
-        // admin edit button
-        if(userRole === 'admin'){
-          const edit = document.createElement('button'); edit.className = 'btn secondary small'; edit.style.marginLeft='8px'; edit.textContent='Edit';
-          edit.addEventListener('click', ()=> openEditCourseModal(c));
-          card.querySelector('div[style*="display:flex;gap:8px"]').appendChild(edit);
-        }
+/* open course page */
+async function openCourseView(course){
+  currentOpenCourse = course;
+  courseTitleEl.textContent = course.title;
+  courseTypeEl.textContent = (course.type || 'free').toUpperCase();
+  materialsEl.innerHTML = '';
+  // materials may be stored inside course doc as array
+  const mats = course.materials || [];
+  if(!mats.length) materialsEl.innerHTML = '<div class="small">No materials added</div>';
+  mats.forEach(m=>{
+    const s = document.createElement('div'); s.className = 'subject';
+    s.innerHTML = `<div><div class="title">${escapeHtml(m.title)}</div><div class="small" style="opacity:.85">${escapeHtml(m.link)}</div></div><div><button class="btn small">OPEN</button></div>`;
+    s.querySelector('button').addEventListener('click', ()=> window.open(m.link, '_blank'));
+    materialsEl.appendChild(s);
+  });
+  showPage('courseView');
+}
 
-        // populate notes preview (small)
-        if(Array.isArray(c.notes) && c.notes.length){
-          const notesList = document.createElement('div'); notesList.style.marginTop='10px';
-          notesList.innerHTML = c.notes.map(n => `<div class="helper">• ${escapeHtml(n.name)}</div>`).join('');
-          card.appendChild(notesList);
-        }
+/* back */
+backBtn.addEventListener('click', ()=> showPage('courses'));
 
-        $('featured').appendChild(card.cloneNode(true));
-        $('courseList').appendChild(card);
-      });
-    }
+/* ---------------- TESTS & NOTICES ---------------- */
+async function loadTests(){
+  try{
+    const snap = await getDocs(collection(db,'tests'));
+    const testList = document.getElementById('testList');
+    testList.innerHTML = '';
+    snap.forEach(d => {
+      const t = d.data(); const row = document.createElement('div'); row.className='course-card';
+      row.innerHTML = `<h3>${escapeHtml(t.title)}</h3><div class="small">${(t.questions||[]).length} questions</div><div style="margin-top:10px"><button class="btn">Take Test</button></div>`;
+      testList.appendChild(row);
+    });
+  } catch(e){ console.error('loadTests', e); document.getElementById('testList').innerHTML = '<div class="small">No tests</div>'; }
+}
 
-    // open course modal (shows named notes & video)
-    function openCourse(course){
-      const modal = document.createElement('div'); modal.className = 'modal';
-      const box = document.createElement('div'); box.className = 'card';
-      let html = `<div style="display:flex;justify-content:space-between;align-items:center"><h3>${escapeHtml(course.title)}</h3><div class="muted small">Type: <strong>${course.type}</strong></div></div>`;
-      html += `<div style="margin-top:12px">${escapeHtml(course.desc||'No description')}</div>`;
-      // notes list
-      if(Array.isArray(course.notes) && course.notes.length){
-        html += `<div style="margin-top:12px"><h4 style="margin:0 0 8px 0">Notes</h4>`;
-        course.notes.forEach((n, i) => {
-          // safe encode, open in new tab
-          const link = n.link || '';
-          html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
-            <div>${escapeHtml(n.name)}</div>
-            <div><a class="btn secondary small" href="${escapeHtml(link)}" target="_blank">Open</a></div>
-          </div>`;
-        });
-        html += `</div>`;
-      }
-      // video
-      if(course.videoLink){
-        if(course.videoLink.includes('youtube.com') || course.videoLink.includes('youtu.be')){
-          const idMatch = (course.videoLink.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/) || [])[1] || (course.videoLink.match(/youtu\.be\/([0-9A-Za-z_-]{11})/) || [])[1];
-          if(idMatch) html += `<div style="margin-top:12px"><iframe width="100%" height="360" src="https://www.youtube.com/embed/${idMatch}" frameborder="0" allowfullscreen></iframe></div>`;
-          else html += `<div style="margin-top:12px"><a href="${escapeHtml(course.videoLink)}" target="_blank" class="muted small">Open Video</a></div>`;
-        } else {
-          html += `<div style="margin-top:12px"><a href="${escapeHtml(course.videoLink)}" target="_blank" class="muted small">Open Video</a></div>`;
-        }
-      }
-      html += `<div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end"><button class="btn secondary" id="closeCourse">Close</button></div>`;
-      box.innerHTML = html;
-      modal.appendChild(box); document.body.appendChild(modal);
-      box.querySelector('#closeCourse').addEventListener('click', ()=> modal.remove());
-    }
+async function loadNotices(){
+  try{
+    const snap = await getDocs(collection(db,'notices'));
+    const el = document.getElementById('noticeList'); el.innerHTML = '';
+    snap.forEach(d => { const n = d.data(); const row = document.createElement('div'); row.className='course-card'; row.innerHTML = `<div>${escapeHtml(n.text)}</div><div class="small" style="margin-top:8px">${new Date(n.createdAt?.toDate?.()||n.createdAt||Date.now()).toLocaleString()}</div>`; el.appendChild(row); });
+  } catch(e){ console.error('loadNotices', e); document.getElementById('noticeList').innerHTML = '<div class="small">No notices</div>'; }
+}
 
-    // ========== ENROLLMENTS ==========
-    async function joinCourse(courseId){
-      if(!currentUser) throw new Error('Login required');
-      // create enrollment doc: { userId, courseId, type: 'joined'|'purchased', createdAt }
-      await addDoc(collection(db,'enrollments'), { userId: currentUser.uid, courseId, type: 'joined', createdAt: serverTimestamp() });
-    }
+/* ---------------- DASHBOARD ---------------- */
+async function renderDashboard(){
+  const el = document.getElementById('dashboardContent'); el.innerHTML = '';
+  if(!currentUser){ el.innerHTML = '<div class="small">Login to see dashboard</div>'; return; }
+  try{
+    const joined = JSON.parse(localStorage.getItem('joinedCourses') || '[]');
+    if(!joined.length){ el.innerHTML = '<div class="small">You have not joined any course</div>'; return; }
+    const userCourses = coursesCache.filter(c => joined.includes(c.id));
+    userCourses.forEach(c => {
+      const card = document.createElement('div'); card.className='course-card';
+      card.innerHTML = `<h3>${escapeHtml(c.title)}</h3><div class="small">${escapeHtml(c.desc||'')}</div><div style="margin-top:10px"><button class="btn">Open</button></div>`;
+      card.querySelector('button').addEventListener('click', ()=> openCourseView(c));
+      el.appendChild(card);
+    });
+  } catch(e){ console.error('dashboard', e); el.innerHTML = '<div class="small">Could not load dashboard</div>'; }
+}
 
-    async function checkEnrollment(uid, courseId){
-      try{
-        const q = query(collection(db,'enrollments'), where('userId','==',uid), where('courseId','==',courseId));
-        const snap = await getDocs(q);
-        return !snap.empty;
-      }catch(e){ console.warn(e); return false; }
-    }
+/* ---------------- ADMIN: add / edit / delete courses & materials ---------------- */
+/* add material UI for create course */
+addMatBtn.addEventListener('click', ()=> {
+  const t = matTitle.value.trim(); const l = matLink.value.trim();
+  if(!t || !l){ showToast('Material title and link required'); return; }
+  adminMaterials.push({ title: t, link: l });
+  const row = document.createElement('div'); row.className = 'adminMaterial'; row.textContent = `${t} — ${l}`;
+  row.style.padding = '8px'; materialsEditor.appendChild(row);
+  matTitle.value = matLink.value = '';
+});
 
-    // ========== EDIT COURSE (admin) ==========
-    function openEditCourseModal(course){
-      const modal = document.createElement('div'); modal.className='modal';
-      const box = document.createElement('div'); box.className='card';
-      // build notes rows
-      const notesHtml = (Array.isArray(course.notes) ? course.notes : []).map(n => {
-        return `<div style="display:flex;gap:8px;align-items:center;margin-top:6px">
-          <input class="input edit-note-name" value="${escapeHtml(n.name)}" />
-          <input class="input edit-note-link" value="${escapeHtml(n.link)}" />
-          <button class="btn secondary btn-remove">Remove</button>
+/* create course */
+saveCourseBtn.addEventListener('click', async ()=> {
+  const title = adminTitle.value.trim(); const desc = adminDesc.value.trim(); const type = adminType.value;
+  if(!title) return showToast('Title required');
+  try{
+    await addDoc(collection(db,'courses'), { title, desc, type, materials: adminMaterials, createdAt: serverTimestamp() });
+    adminTitle.value = adminDesc.value = ''; adminMaterials = []; materialsEditor.innerHTML = '';
+    showToast('Course created'); await loadCourses(); loadAdminLists();
+  } catch(e){ console.error('create course failed', e); showToast('Create failed'); }
+});
+
+/* admin lists */
+async function loadAdminLists(){
+  adminCourses.innerHTML = '';
+  try{
+    const snap = await getDocs(collection(db,'courses'));
+    snap.forEach(d => {
+      const c = d.data(); c.id = d.id;
+      const row = document.createElement('div'); row.className = 'admin-row';
+      row.innerHTML = `<div><strong>${escapeHtml(c.title)}</strong><div class="small">${escapeHtml(c.desc||'')}</div></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn secondary" data-id="${c.id}" data-title="${escapeHtml(c.title)}">Edit</button>
+          <button class="btn" style="background:rgba(239,68,68,0.12)" data-del="${c.id}">Delete</button>
         </div>`;
-      }).join('');
-      box.innerHTML = `<h3>Edit Course</h3>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <input id="editTitle" class="input" value="${escapeHtml(course.title)}" />
-          <textarea id="editDesc" class="input" style="min-height:80px">${escapeHtml(course.desc||'')}</textarea>
-          <select id="editType" class="input"><option value="free">Free</option><option value="premium">Premium</option></select>
-          <div id="editNotesContainer">${notesHtml}</div>
-          <div style="display:flex;gap:8px"><button class="btn secondary" id="editAddNote">+ Add note</button></div>
-          <input id="editVideoLink" class="input" placeholder="Video link" value="${escapeHtml(course.videoLink||'')}" />
-          <label><input type="checkbox" id="editPublished" ${course.published ? 'checked' : ''}/> Published</label>
-          <div style="display:flex;gap:8px;justify-content:flex-end">
-            <button class="btn secondary" id="cancelEdit">Cancel</button>
-            <button class="btn" id="saveEdit">Save</button>
-          </div>
-        </div>`;
-      modal.appendChild(box); document.body.appendChild(modal);
-      $('editType').value = course.type || 'free';
-      // add remove handlers for existing rows
-      box.querySelectorAll('.btn-remove').forEach(btn=> btn.addEventListener('click', (e)=> e.currentTarget.parentElement.remove()));
-      $('editAddNote').addEventListener('click', ()=> {
-        const c = document.createElement('div');
-        c.style.display='flex'; c.style.gap='8px'; c.style.alignItems='center'; c.style.marginTop='6px';
-        c.innerHTML = `<input class="input edit-note-name" placeholder="Note name" /><input class="input edit-note-link" placeholder="Note link" /><button class="btn secondary btn-remove">Remove</button>`;
-        $('editNotesContainer').appendChild(c);
-        c.querySelector('.btn-remove').addEventListener('click', ()=> c.remove());
-      });
-      $('cancelEdit').addEventListener('click', ()=> modal.remove());
-      $('saveEdit').addEventListener('click', async ()=> {
-        try{
-          const title = $('editTitle').value.trim(); const desc = $('editDesc').value.trim(); const type = $('editType').value;
-          const videoLink = $('editVideoLink').value.trim(); const published = $('editPublished').checked;
-          if(!title) return showToast('Title required');
-          const notes = Array.from(document.querySelectorAll('.edit-note-name')).map((el, i) => {
-            const name = el.value.trim(); const link = document.querySelectorAll('.edit-note-link')[i].value.trim();
-            return name ? { name, link } : null;
-          }).filter(Boolean);
-          await updateDoc(doc(db,'courses',course.id), { title, desc, type, notes, videoLink, published: !!published });
-          modal.remove(); loadCourses(); loadAdminLists(); showToast('Course updated');
-        }catch(e){ console.error(e); showToast('Update failed'); }
-      });
-    }
+      adminCourses.appendChild(row);
+    });
+    // attach listeners
+    adminCourses.querySelectorAll('button[data-del]').forEach(b => b.addEventListener('click', async ()=> {
+      const id = b.getAttribute('data-del');
+      if(!confirm('Delete this course?')) return;
+      try{ await deleteDoc(doc(db,'courses', id)); showToast('Deleted'); await loadCourses(); loadAdminLists(); } catch(e){ console.error(e); showToast('Delete failed'); }
+    }));
+    adminCourses.querySelectorAll('button[data-id]').forEach(b => b.addEventListener('click', ()=> {
+      const id = b.getAttribute('data-id');
+      openAdminEditModal(id);
+    }));
+  } catch(e){ console.error('admin lists', e); adminCourses.innerHTML = '<div class="small">Could not load</div>'; }
+}
 
-    // ========== TESTS ==========
-    async function loadTests(){
-      try{ const qSnap = await getDocs(collection(db,'tests')); testsCache = []; qSnap.forEach(d=> testsCache.push({id:d.id,...d.data()})); } catch(e){ console.warn('Failed tests', e); testsCache = [{id:'t1',title:'Basic Math',questions:[{q:'2+2=?',options:['2','3','4','5'],answer:2}]}]; }
-      renderTests(testsCache);
-    }
-    function renderTests(list){
-      const el = $('testList'); el.innerHTML='';
-      list.forEach(t=>{ const c = document.createElement('div'); c.className='course-card'; c.innerHTML = `<h3>${escapeHtml(t.title)}</h3><div class="muted small">${(t.questions||[]).length} questions</div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button class='btn' data-id='${t.id}'>Take Test</button></div>`; el.appendChild(c); });
-      el.querySelectorAll('.btn').forEach(b=> b.addEventListener('click', ()=> startTest(list.find(x=> x.id===b.dataset.id))));
-    }
-    function startTest(test){
-      if(!test){ showToast('Test not found'); return; }
-      if(!currentUser){ if(confirm('Login required to take test. Open login panel?')) { $('authView').classList.remove('hidden'); $('authEmail').focus(); } return; }
-      const questions = test.questions || []; let idx=0, score=0;
-      const modal = document.createElement('div'); modal.className='modal';
-      const box = document.createElement('div'); box.className='card'; box.style.width='min(820px,96vw)'; modal.appendChild(box); document.body.appendChild(modal);
-      function renderQ(){
-        const q = questions[idx];
-        box.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><h3>${escapeHtml(test.title)}</h3><div class="muted small">Q ${idx+1} / ${questions.length}</div></div>
-          <div style="margin-top:12px"><div style="font-weight:600">${escapeHtml(q.q)}</div><div style="margin-top:8px">${q.options.map((opt,i)=> `<div style="margin-top:8px"><label><input type="radio" name="opt" value="${i}"> ${escapeHtml(opt)}</label></div>`).join('')}</div></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px"><div class="muted small">Select and press Next</div><div><button class='btn secondary' id='endTest'>End</button><button class='btn' id='nextQ'>Next</button></div></div>`;
-        box.querySelector('#nextQ').addEventListener('click', ()=>{
-          const sel = box.querySelector('input[name="opt"]:checked'); if(!sel){ showToast('Choose an answer'); return; }
-          if(parseInt(sel.value) === q.answer) score++;
-          idx++; if(idx >= questions.length) finish(); else renderQ();
-        });
-        box.querySelector('#endTest').addEventListener('click', ()=> { if(confirm('End test?')) finish(); });
+/* Edit modal with full material add/delete */
+async function openAdminEditModal(courseId){
+  try{
+    const dref = doc(db,'courses', courseId);
+    const dSnap = await getDoc(dref);
+    if(!dSnap.exists()){ showToast('Course not found'); return; }
+    const data = dSnap.data();
+    const modalHtml = `
+      <h3 style="margin-top:0">Edit Course</h3>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <input id="__edit_title" class="input" value="${escapeHtml(data.title||'')}" />
+        <textarea id="__edit_desc" class="input" style="min-height:80px">${escapeHtml(data.desc||'')}</textarea>
+        <select id="__edit_type" class="input"><option value="free">Free</option><option value="premium">Premium</option></select>
+        <div style="margin-top:8px"><strong>Materials</strong></div>
+        <div id="__materials_list" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow:auto;padding-top:6px"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="__mat_title" class="input" placeholder="Material title" />
+          <input id="__mat_link" class="input" placeholder="Material link (https://...)" />
+          <button id="__mat_add" class="btn" style="padding:8px 10px">Add</button>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+          <button id="__edit_cancel" class="btn secondary">Cancel</button>
+          <button id="__edit_save" class="btn">Save</button>
+        </div>
+      </div>
+    `;
+    const { container, box } = showModal(modalHtml);
+    $('__edit_type').value = data.type || 'free';
+    let materialArray = Array.isArray(data.materials) ? data.materials.slice() : [];
+    const matListEl = $('__materials_list');
+    function renderMaterials(){
+      matListEl.innerHTML = '';
+      if(materialArray.length === 0){
+        const p = document.createElement('div'); p.className = 'small'; p.textContent = 'No materials';
+        matListEl.appendChild(p); return;
       }
-      async function finish(){ modal.remove(); showToast(`Test finished — Score: ${score} / ${questions.length}`); try{ await addDoc(collection(db,'results'), { userId: currentUser.uid, testId: test.id, score, total: questions.length, createdAt: serverTimestamp() }); }catch(e){ console.warn('Save result failed', e); } }
-      renderQ();
-    }
-
-    // ========== NOTICES ==========
-    async function loadNotices(){ try{ const qSnap = await getDocs(collection(db,'notices')); noticesCache=[]; qSnap.forEach(d=> noticesCache.push({id:d.id,...d.data()})); } catch(e){ console.warn('Could not fetch notices', e); noticesCache=[]; } renderNotices(noticesCache); }
-    function renderNotices(list){ const el = $('noticeList'); el.innerHTML=''; const top = $('topNoticeContainer'); top.innerHTML=''; if(!list.length){ el.innerHTML='<div class="muted small">No notices</div>'; return; } list.slice().reverse().forEach(n=>{ const div = document.createElement('div'); div.className='notice'; div.innerHTML = `<div style="display:flex;justify-content:space-between"><div>${escapeHtml(n.text)}</div><div class="muted small">${new Date(n.createdAt?.toDate?.()||n.createdAt||Date.now()).toLocaleString()}</div></div>`; el.appendChild(div); }); if(list.length) top.innerHTML = `<div class="notice small">${escapeHtml(list[list.length-1].text)}</div>`; }
-
-    // ========== DASHBOARD & MY COURSES ==========
-    async function renderDashboard(){
-      const el = $('dashboardContent'); el.innerHTML='';
-      if(!currentUser){ el.innerHTML = '<div class="muted">Login to see your dashboard: enrolled courses, results and progress.</div>'; return; }
-      try{
-        const udoc = await getDoc(doc(db,'users',currentUser.uid)); const ud = udoc.exists()? udoc.data() : {};
-        el.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><div class="avatar">${(currentUser.email||'U').charAt(0).toUpperCase()}</div><div><div style="font-weight:700">${ud.name || currentUser.email.split('@')[0]}</div><div class="muted small">${currentUser.email}</div></div></div>`;
-        const s = document.createElement('div'); s.style.marginTop='12px'; s.className='card'; s.innerHTML = `<h3>Account</h3><div class="muted small">Role: ${ud.role||'student'} | Paid: ${ud.paid? 'Yes':'No'}</div>`; el.appendChild(s);
-        // recent results
-        const resSnap = await getDocs(query(collection(db,'results'), where('userId','==',currentUser.uid), orderBy('createdAt','desc')));
-        const results=[]; resSnap.forEach(r=> results.push({id:r.id, ...r.data()}));
-        const rcard = document.createElement('div'); rcard.className='card'; rcard.style.marginTop='12px'; rcard.innerHTML = '<h3>Recent Results</h3>' + (results.length? results.map(rr=>`<div style="display:flex;justify-content:space-between;padding:6px 0">${escapeHtml(rr.testId)} <span class="muted small">${rr.score} / ${rr.total}</span></div>`).join('') : '<div class="muted small">No results yet</div>');
-        el.appendChild(rcard);
-      }catch(e){ console.error(e); el.innerHTML = '<div class="muted">Could not load dashboard — check firebase</div>'; }
-    }
-
-    async function loadMyEnrollments(){
-      showView('dashboard');
-      if(!currentUser){ showToast('Login to see your courses'); $('authView').classList.remove('hidden'); return; }
-      const enq = query(collection(db,'enrollments'), where('userId','==',currentUser.uid));
-      const snap = await getDocs(enq);
-      const enrolled = []; snap.forEach(d=> enrolled.push(d.data()));
-      // join with course details
-      const enrolledCourseIds = enrolled.map(e=> e.courseId);
-      const userCourses = coursesCache.filter(c => enrolledCourseIds.includes(c.id));
-      if(userCourses.length === 0){
-        $('dashboardContent').innerHTML = '<div class="muted">You have not joined any course yet.</div>';
-        return;
-      }
-      const el = $('dashboardContent'); el.innerHTML = '<h3>Your Courses</h3>';
-      userCourses.forEach(c=>{
-        const card = document.createElement('div'); card.className='card'; card.style.marginTop='8px';
-        card.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><div><strong>${escapeHtml(c.title)}</strong><div class="muted small">${escapeHtml(c.desc||'')}</div></div><div><button class="btn" data-id="${c.id}">Open</button></div></div>`;
-        el.appendChild(card);
-        card.querySelector('button').addEventListener('click', ()=> openCourse(c));
+      materialArray.forEach((m, idx) => {
+        const row = document.createElement('div');
+        row.style.display = 'flex';
+        row.style.justifyContent = 'space-between';
+        row.style.alignItems = 'center';
+        row.style.gap = '8px';
+        row.style.padding = '8px';
+        row.style.borderRadius = '8px';
+        row.style.background = 'rgba(255,255,255,0.02)';
+        row.innerHTML = `<div style="max-width:70%"><div style="font-weight:600">${escapeHtml(m.title)}</div><div class="small" style="opacity:.85">${escapeHtml(m.link)}</div></div>
+                         <div style="display:flex;gap:8px">
+                           <button class="btn small" data-open="${idx}">Open</button>
+                           <button class="btn secondary small" data-del="${idx}">Delete</button>
+                         </div>`;
+        row.querySelector('button[data-open]').addEventListener('click', ()=> window.open(m.link, '_blank'));
+        row.querySelector('button[data-del]').addEventListener('click', ()=>{
+          if(!confirm('Remove this material?')) return;
+          materialArray.splice(idx,1);
+          renderMaterials();
+        });
+        matListEl.appendChild(row);
       });
     }
+    renderMaterials();
 
-    // ========== ADMIN: create course with multiple notes ==========
-    $('createCourseBtn').addEventListener('click', async ()=>{
-      try{
-        await ensureAdminOrAbort();
-        const title = $('adminCourseTitle').value.trim(); const desc = $('adminCourseDesc').value.trim(); const type = $('adminCourseType').value;
-        const published = $('adminPublish').checked;
-        if(!title) return showToast('Title required');
-        // collect notes rows
-        const notes = [];
-        document.querySelectorAll('#notesContainer .note-name').forEach((el,i)=>{
-          const name = el.value.trim(); const link = document.querySelectorAll('#notesContainer .note-link')[i].value.trim();
-          if(name) notes.push({ name, link });
-        });
-        await addDoc(collection(db,'courses'), { title, desc, type, notes, videoLink: '', published: !!published, createdAt: serverTimestamp() });
-        // clear inputs
-        $('adminCourseTitle').value=''; $('adminCourseDesc').value=''; $('adminPublish').checked=false;
-        // reset notes container
-        $('notesContainer').innerHTML=''; $('notesContainer').appendChild(createNoteRow()); $('notesContainer').appendChild(createNoteRow());
-        loadAdminLists(); loadCourses(); showToast('Course created');
-      }catch(err){ console.warn(err); }
+    $('__mat_add').addEventListener('click', ()=> {
+      const t = $('__mat_title').value.trim(); const l = $('__mat_link').value.trim();
+      if(!t || !l){ showToast('Provide title and link'); return; }
+      materialArray.push({ title: t, link: l });
+      $('__mat_title').value = ''; $('__mat_link').value = '';
+      renderMaterials();
     });
 
-    // ========== CREATE TEST / NOTICE ==========
-    $('createTestBtn').addEventListener('click', async ()=> {
+    $('__edit_cancel').addEventListener('click', ()=> container.remove());
+
+    $('__edit_save').addEventListener('click', async ()=> {
+      const newTitle = $('__edit_title').value.trim();
+      const newDesc = $('__edit_desc').value.trim();
+      const newType = $('__edit_type').value;
+      if(!newTitle){ showToast('Title required'); return; }
       try{
-        await ensureAdminOrAbort();
-        const title = $('adminTestTitle').value.trim(); const json = $('adminTestJSON').value;
-        if(!title || !json) return showToast('Provide title and questions JSON');
-        const questions = JSON.parse(json);
-        await addDoc(collection(db,'tests'), { title, questions, createdAt: serverTimestamp() });
-        $('adminTestTitle').value=''; $('adminTestJSON').value='';
-        loadAdminLists(); loadTests(); showToast('Test created');
-      }catch(err){ console.warn(err); if(err instanceof SyntaxError) showToast('Invalid JSON'); }
-    });
-    $('createNoticeBtn').addEventListener('click', async ()=> {
-      try{
-        await ensureAdminOrAbort();
-        const text = $('adminNoticeText').value.trim(); if(!text) return showToast('Enter notice text');
-        await addDoc(collection(db,'notices'), { text, createdAt: serverTimestamp() });
-        $('adminNoticeText').value=''; loadNotices(); showToast('Notice posted');
-      }catch(err){ console.warn(err); }
+        await updateDoc(dref, { title: newTitle, desc: newDesc, type: newType, materials: materialArray, updatedAt: serverTimestamp() });
+        container.remove(); showToast('Course updated'); await loadCourses(); loadAdminLists();
+      } catch(err){ console.error('save edit', err); showToast('Update failed'); }
     });
 
-    // ========== ADMIN LISTS ==========
-    async function loadAdminLists(){
-      try{
-        const cSnap = await getDocs(collection(db,'courses'));
-        const tSnap = await getDocs(collection(db,'tests'));
-        const nSnap = await getDocs(collection(db,'notices'));
-        const lists = $('adminLists'); lists.innerHTML='';
-        lists.appendChild(createAdminSection('Courses', cSnap.docs.map(d=>({id:d.id,...d.data()}))));
-        lists.appendChild(createAdminSection('Tests', tSnap.docs.map(d=>({id:d.id,...d.data()}))));
-        lists.appendChild(createAdminSection('Notices', nSnap.docs.map(d=>({id:d.id,...d.data()}))));
-      }catch(e){ $('adminLists').innerHTML = '<div class="muted small">Could not load admin lists. Check permissions.</div>'; }
-    }
-    function createAdminSection(title, items){
-      const wrap = document.createElement('div'); wrap.className='card'; wrap.style.marginTop='12px';
-      wrap.innerHTML = `<h3>${escapeHtml(title)}</h3>` + (items.length ? items.map(it=>`<div style="display:flex;justify-content:space-between;padding:8px 0">${escapeHtml(it.title||it.text||it.id)} <div class="muted small">${escapeHtml(it.type||'')}</div></div>`).join('') : '<div class="muted small">No items</div>');
-      return wrap;
-    }
+  } catch(e){ console.error('openAdminEditModal', e); showToast('Cannot open editor'); }
+}
 
-    // ========== INITIAL LOAD ==========
-    loadCourses(); loadTests(); loadNotices();
+/* ---------------- SEARCH & FILTER ---------------- */
+filterType.addEventListener('change', ()=> {
+  const v = filterType.value;
+  const filtered = v==='all' ? coursesCache : coursesCache.filter(c=>c.type===v);
+  courseListEl.innerHTML = '';
+  filtered.forEach(c=>{
+    const el = document.createElement('div'); el.className='course-card';
+    el.innerHTML = `<h3>${escapeHtml(c.title)}</h3><div class="small">${escapeHtml(c.desc||'')}</div><div style="margin-top:8px"><span class="badge ${c.type==='premium'?'premium':'free'}">${c.type||'free'}</span></div><div style="margin-top:10px"><button class="btn">${isJoined(c.id)?'OPEN NOW':'JOIN'}</button></div>`;
+    el.querySelector('button').addEventListener('click', ()=> handleCourseClick(c));
+    courseListEl.appendChild(el);
+  });
+});
 
-    // ========== END ==========
-  </script>
+searchInput.addEventListener('input', ()=> {
+  const q = searchInput.value.trim().toLowerCase();
+  if(!q) return loadCourses();
+  const filtered = coursesCache.filter(c => (c.title||'').toLowerCase().includes(q) || (c.desc||'').toLowerCase().includes(q));
+  courseListEl.innerHTML = '';
+  filtered.forEach(c=>{
+    const el = document.createElement('div'); el.className='course-card';
+    el.innerHTML = `<h3>${escapeHtml(c.title)}</h3><div class="small">${escapeHtml(c.desc||'')}</div><div style="margin-top:8px"><span class="badge ${c.type==='premium'?'premium':'free'}">${c.type||'free'}</span></div><div style="margin-top:10px"><button class="btn">${isJoined(c.id)?'OPEN NOW':'JOIN'}</button></div>`;
+    el.querySelector('button').addEventListener('click', ()=> handleCourseClick(c));
+    courseListEl.appendChild(el);
+  });
+});
+
+/* ---------------- INITIAL LOAD ---------------- */
+loadCourses(); loadTests(); loadNotices();
+
+/* expose appState for debugging */
+window.appState = ()=> ({ currentUser, userRole, coursesCacheLen: coursesCache.length });
+
+</script>
 </body>
 </html>
